@@ -6,7 +6,11 @@
         <option value="$PROJECT_DIR$/spring-boot-01-helloworld/pom.xml" />
         <option value="$PROJECT_DIR$/spring-boot-01-helloworld-quick/pom.xml" />
         <option value="$PROJECT_DIR$/spring-boot-02-config/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-02-config-autoconfig/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-03-logging/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-04-web-restfulcrud/pom.xml" />
       </list>
     </option>
   </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
 </project>

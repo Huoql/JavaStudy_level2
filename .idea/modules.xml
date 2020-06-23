@@ -5,6 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/spring-boot-01-helloworld/spring-boot-01-helloworld.iml" filepath="$PROJECT_DIR$/spring-boot-01-helloworld/spring-boot-01-helloworld.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot-01-helloworld-quick/spring-boot-01-helloworld-quick.iml" filepath="$PROJECT_DIR$/spring-boot-01-helloworld-quick/spring-boot-01-helloworld-quick.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot-02-config/spring-boot-02-config.iml" filepath="$PROJECT_DIR$/spring-boot-02-config/spring-boot-02-config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-02-config-autoconfig/spring-boot-02-config-autoconfig.iml" filepath="$PROJECT_DIR$/spring-boot-02-config-autoconfig/spring-boot-02-config-autoconfig.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-03-logging/spring-boot-03-logging.iml" filepath="$PROJECT_DIR$/spring-boot-03-logging/spring-boot-03-logging.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-04-web-restfulcrud/spring-boot-04-web-restfulcrud.iml" filepath="$PROJECT_DIR$/spring-boot-04-web-restfulcrud/spring-boot-04-web-restfulcrud.iml" />
     </modules>
   </component>
 </project>
