@@ -25,11 +25,23 @@
 	</properties>
 
 	<dependencies>
-		<!--引入web模块-->
+		<!--引入web模块,默认使用嵌入式的Tomcat作为Servlet容器-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<!--<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>-->
 		</dependency>
+
+		<!--引入其他Servlet容器，先排除Tomcat依赖，再添加即可-->
+		<!--<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jetty</artifactId>
+		</dependency>-->
 
 		<!--引入模板引擎-->
 		<dependency>
