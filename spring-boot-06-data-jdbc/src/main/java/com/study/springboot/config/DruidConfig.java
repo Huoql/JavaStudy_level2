@@ -17,11 +17,11 @@ import java.util.Map;
 @Configuration
 public class DruidConfig {
 
-    @ConfigurationProperties(prefix = "spring.datasource")
-    @Bean
-    public DataSource druid(){
-        return  new DruidDataSource();
-    }
+//    @ConfigurationProperties(prefix = "spring.datasource")
+//    @Bean
+//    public DataSource druid(){
+//        return  new DruidDataSource();
+//    }
 
     //配置Druid的监控
     //主要实现WEB监控的配置处理
