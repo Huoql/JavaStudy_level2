@@ -40,7 +40,7 @@
       <module name="spring-boot-06-data-mybatis" target="1.8" />
       <module name="spring-boot-07" target="1.8" />
       <module name="spring-boot-08-autoconfigurer" target="1.8" />
-      <module name="spring-boot-08-starter" target="1.5" />
+      <module name="spring-boot-08-starter" target="1.8" />
       <module name="spring-boot-08-starter-test" target="1.8" />
       <module name="springboot-test" target="1.8" />
     </bytecodeTargetLevel>
@@ -59,6 +59,7 @@
       <module name="spring-boot-06-data-mybatis" options="-parameters" />
       <module name="spring-boot-07" options="-parameters" />
       <module name="spring-boot-08-autoconfigurer" options="-parameters" />
+      <module name="spring-boot-08-starter" options="-parameters" />
       <module name="spring-boot-08-starter-test" options="-parameters" />
       <module name="springboot-test" options="-parameters" />
     </option>

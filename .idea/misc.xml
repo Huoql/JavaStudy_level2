@@ -19,15 +19,12 @@
         <option value="$PROJECT_DIR$/spring-boot-06-data-mybatis/pom.xml" />
         <option value="$PROJECT_DIR$/spring-boot-07/pom.xml" />
         <option value="$PROJECT_DIR$/spring-boot-08-autoconfigurer/pom.xml" />
-        <option value="$PROJECT_DIR$/spring-boot-08-starter/pom.xml" />
         <option value="$PROJECT_DIR$/spring-boot-08-starter-test/pom.xml" />
         <option value="$PROJECT_DIR$/spring-boot-00-test/pom.xml" />
         <option value="$PROJECT_DIR$/springboot-test/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-08-starter/pom.xml" />
       </list>
     </option>
-  </component>
-  <component name="ProjectPlainTextFileTypeManager">
-    <file url="file://$PROJECT_DIR$/spring-boot-01-helloworld/src/main/resources/person.properties" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
 </project>
