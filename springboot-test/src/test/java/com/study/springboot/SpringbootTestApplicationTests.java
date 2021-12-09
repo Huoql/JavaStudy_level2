@@ -3,10 +3,9 @@ package com.study.springboot;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.function.Consumer;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.Period;
 
 @SpringBootTest
 class SpringbootTestApplicationTests {
@@ -69,25 +68,16 @@ class SpringbootTestApplicationTests {
 	}
 
 	@Test
-	void a() {
-		Calendar calendar = Calendar.getInstance();
+	void test() {
+		LocalDate today = LocalDate.now();
+		System.out.println("Today：" + today);
+		LocalDate oldDate = LocalDate.of(2019, Month.AUGUST, 16);
+		System.out.println("OldDate：" + oldDate);
 
-		int max = calendar.getActualMaximum(
-				Calendar.DAY_OF_MONTH);
-		System.out.println(max);
-	}
+		Period p = Period.between(oldDate, today);
 
-	int recurrence(int n) {
-		if(n == 1 || n == 2) {
-			return n;
-		}else {
-			return n + recurrence(n-1);
-		}
-	}
-
-	public static void main(String[] args) {
-		SpringbootTestApplicationTests a = new SpringbootTestApplicationTests();
-		System.out.println(a.recurrence(10));
-		System.out.println(String.format("%06d", Integer.parseInt("G061".substring(1)) + 1));
+		System.out.println(p.getYears());
+		System.out.println(p.getMonths());
+		System.out.println(p.getDays());
 	}
 }
