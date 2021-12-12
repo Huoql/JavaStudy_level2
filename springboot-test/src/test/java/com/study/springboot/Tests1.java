@@ -293,37 +293,36 @@ public class Tests1 {
      */
     @Test
     public void test20() {
-        StringBuffer formula = new StringBuffer("100 / Math.pow(x + 1, y)");
-        for (int i = 0; i < new BigDecimal("0.1562").intValue() + 1; i++) {
-            formula.append(String.format(" + z / Math.pow(x + 1, y - %d)", i));
-        }
-
-        System.out.println(formula.toString());
-        Expression expression = AviatorEvaluator.compile(formula.toString(), true);
-        Map<String, Object> paramsMap = new HashMap<String, Object>(){
-            {
-                put("y", new BigDecimal("0.1562"));
-                put("z", new BigDecimal("4.29"));
-            }
-        };
+//        StringBuffer formula = new StringBuffer("100 / Math.pow(x + 1, y)");
+//        for (int i = 0; i < new BigDecimal("0.1562").intValue() + 1; i++) {
+//            formula.append(String.format(" + z / Math.pow(x + 1, y - %d)", i));
+//        }
+//
+//        System.out.println(formula.toString());
+//        Expression expression = AviatorEvaluator.compile(formula.toString(), true);
+//        Map<String, Object> paramsMap = new HashMap<String, Object>(){
+//            {
+//                put("y", new BigDecimal("0.1562"));
+//                put("z", new BigDecimal("4.29"));
+//            }
+//        };
 
         double yieldToMaturityFloorThreshold = 0;
         double yieldToMaturityCeilThreshold = 1;
         double yieldToMaturity = 0;
 
-        int doubleScale = 1000;
         for (int i = 0; i < 50; i++) {
+            String formula = "104.29/Math.pow(1+x, 1.6639) + 4.29/Math.pow(1+x, 0.6639)";
             yieldToMaturity = (yieldToMaturityFloorThreshold + yieldToMaturityCeilThreshold) / 2;
-            paramsMap.put("x", yieldToMaturity);
+            Map<String, Object> paramsMap = new HashMap<String, Object>();
+            paramsMap.put("x", new BigDecimal(String.valueOf(yieldToMaturity)));
 
-            if (new BigDecimal(expression.execute(paramsMap).toString()).compareTo(new BigDecimal("103.6318")) > 0) {
+            if (new BigDecimal(AviatorEvaluator.compile(formula, true).execute(paramsMap).toString()).compareTo(new BigDecimal("104.7457")) > 0) {
                 yieldToMaturityFloorThreshold = yieldToMaturity;
             }else {
                 yieldToMaturityCeilThreshold = yieldToMaturity;
             }
         }
         System.out.println(new BigDecimal(String.valueOf(yieldToMaturity)));
-
-        System.out.println(100 / Math.pow(yieldToMaturity + 1, 0.1918) + 4.29/ Math.pow(yieldToMaturity + 1, 0.1918 - 0));
     }
 }
