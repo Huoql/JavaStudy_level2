@@ -1,22 +1,36 @@
 package com.study.springboot;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.googlecode.aviator.AviatorEvaluator;
 import com.googlecode.aviator.Expression;
 import com.googlecode.aviator.Options;
+import net.minidev.json.annotate.JsonIgnore;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
+import javax.swing.text.DateFormatter;
+import java.beans.BeanInfo;
+import java.beans.Introspector;
 import java.math.BigDecimal;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @SpringBootTest
 public class Tests1 {
@@ -128,7 +142,7 @@ public class Tests1 {
 
         for (int i = 0; i < matchList.size(); i++) {
             System.out.println(matchList.get(i));
-            String s = str.replace(matchList.get(i), String.valueOf(Math.random()*10));
+            String s = str.replace(matchList.get(i), String.valueOf(Math.random() * 10));
             System.out.println(s);
         }
     }
@@ -136,10 +150,10 @@ public class Tests1 {
     @Test
     public void test7() {
         int start = 'A';
-        for (int i = 0; i < 8/26 + 1; i++) {
-            String first = String.valueOf((char)(start + i));
-            for (int j = 0; (8-26*i) >= 26 ? j < 26 : j < (8-26*i) % 26; j++){
-                String second = String.valueOf((char)(start + j));
+        for (int i = 0; i < 8 / 26 + 1; i++) {
+            String first = String.valueOf((char) (start + i));
+            for (int j = 0; (8 - 26 * i) >= 26 ? j < 26 : j < (8 - 26 * i) % 26; j++) {
+                String second = String.valueOf((char) (start + j));
                 System.out.println(first + second);
             }
         }
@@ -190,7 +204,7 @@ public class Tests1 {
         System.out.println("================== ");
         for (int i = 0; i < arrayList.size(); i++) {
             System.out.println("arr = " + arrayList.get(i));
-            if ("c".equalsIgnoreCase(arrayList.get(i))){
+            if ("c".equalsIgnoreCase(arrayList.get(i))) {
                 System.out.println("brr => " + arrayList.get(i));
                 return;
             }
@@ -319,10 +333,112 @@ public class Tests1 {
 
             if (new BigDecimal(AviatorEvaluator.compile(formula, true).execute(paramsMap).toString()).compareTo(new BigDecimal("104.7457")) > 0) {
                 yieldToMaturityFloorThreshold = yieldToMaturity;
-            }else {
+            } else {
                 yieldToMaturityCeilThreshold = yieldToMaturity;
             }
         }
         System.out.println(new BigDecimal(String.valueOf(yieldToMaturity)));
+    }
+
+    @Test
+    public void test21() {
+        List<String> list = Arrays.asList("m,k,l,a", "1,3,5,7");
+        List<String> listNew = list.stream().flatMap(s -> {
+            // 将每个元素转换成一个stream
+            String[] split = s.split(",");
+            Stream<String> s2 = Arrays.stream(split);
+            return s2;
+        }).collect(Collectors.toList());
+
+        System.out.println("处理前的集合：" + list);
+        System.out.println("处理后的集合：" + listNew);
+    }
+
+    @Test
+    public void test22() {
+        BigDecimal amount = new BigDecimal("123000000");
+        if (amount.compareTo(BigDecimal.ZERO) == 0) {
+            System.out.println(amount.toString());
+        } else if (amount.divide(new BigDecimal("100000000")).compareTo(BigDecimal.ZERO) > 0) {
+            System.out.println(String.format("%s亿", amount.divide(new BigDecimal("100000000"))));
+        } else if (amount.divide(new BigDecimal("10000")).compareTo(BigDecimal.ZERO) > 0) {
+            System.out.println(String.format("%f万", amount.divide(new BigDecimal("10000"))));
+        }
+    }
+
+    @Test
+    public void test23() {
+        for (int i = 0; i < 5; i++) {
+            Arrays.asList(1, 2, null, 4, null).stream().forEach(number -> {
+                Optional.ofNullable(number).orElseThrow(() -> {
+                    System.out.println(number);
+                    return new NullPointerException();
+                });
+            });
+            System.out.println(i);
+        }
+    }
+
+    @Test
+    public void test24() {
+        List<BigDecimal> list = Arrays.asList(new BigDecimal("1"), new BigDecimal("2"), null);
+        list.stream().sorted().forEach(a -> {
+            System.out.println(a);
+        });
+    }
+
+    @Test
+    public void test25() {
+        System.out.println(Long.parseLong(null));
+    }
+
+    @Test
+    public void test26() {
+        int i = 1;
+        i = i++;
+        int j = i++;
+        int k = i + ++i * i++;
+        System.out.println(i);
+        System.out.println(j);
+        System.out.println(k);
+    }
+
+    @Test
+    public void test27() {
+        List<Integer> list = null;
+        Optional.ofNullable(list).orElseGet(ArrayList::new).forEach(a -> {
+            System.out.println(a);
+        });
+    }
+
+    @Test
+    public void test28() {
+        Integer limit = 0;
+        Integer offsize = 10000;
+        limit = offsize;
+        offsize += offsize;
+        System.out.println(limit);
+        System.out.println(offsize);
+    }
+
+    @Test
+    public void test29() {
+        List<String> list = new ArrayList<>();
+        System.out.println(list.stream().collect(Collectors.toMap(Function.identity(), Function.identity())));
+    }
+
+    @Test
+    public void test30() {
+        System.out.println("/usr/哈123哈.111.postman_collection.json".matches(".+.postman_collection.json$"));
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        map.put(1, Collections.singletonList(1));
+        map.put(2, null);
+        System.out.println(map.get(null));
+    }
+
+    @Test
+    public void test31() {
+        List<String> list = new ArrayList<>();
+        System.out.println(list.get(0));
     }
 }
